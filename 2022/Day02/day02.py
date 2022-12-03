@@ -1,47 +1,14 @@
-rounds = list([round.split(" ") for round in open("data.txt").read().split("\n")])
+rounds = open("data.txt").read().split("\n")
 
 
 def part1():
-    total = 0
-    for round in rounds:
-        opponent = ord(round[0]) - 64
-        player = ord(round[1]) - 64 - 23
-        total += get_round_score(opponent, player)
-    return total
+    outcomes = {"A X": 4, "A Y": 8, "A Z": 3, "B X": 1, "B Y": 5, "B Z": 9, "C X": 7, "C Y": 2, "C Z": 6}
+    return sum(outcomes[round] for round in rounds)
 
 
 def part2():
-    total = 0
-    for round in rounds:
-        opponent = ord(round[0]) - 64
-        outcome = ord(round[1]) - 64 - 23
-        match outcome:
-            case 1:
-                match opponent:
-                    case 1:
-                        player = 3
-                    case _:
-                        player = opponent - 1
-            case 2:
-                player = opponent
-            case 3:
-                match opponent:
-                    case 3:
-                        player = 1
-                    case _:
-                        player = opponent + 1
-        total += get_round_score(opponent, player)
-    return total
-
-
-def get_round_score(opponent: int, player: int):
-    score = player
-    match (player - opponent):
-        case 0:
-            score += 3
-        case -2 | 1:
-            score += 6
-    return score
+    outcomes = {"A X": 3, "A Y": 4, "A Z": 8, "B X": 1, "B Y": 5, "B Z": 9, "C X": 2, "C Y": 6, "C Z": 7}
+    return sum(outcomes[round] for round in rounds)
 
 
 print(part1())
