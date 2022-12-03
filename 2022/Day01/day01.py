@@ -1,4 +1,4 @@
-elves = [list(map(int, x)) for x in [elf.split("\n") for elf in open("data.txt").read().split("\n\n")]]
+elves = [[int(calorie) for calorie in elf] for elf in [elf.split("\n") for elf in open("data.txt").read().split("\n\n")]]
 
 
 def part1():
