@@ -4,10 +4,7 @@ pairs = open("data.txt").read().split("\n")
 def part1():
     count = 0
     for pair in pairs:
-        one_start = int(pair.split(",")[0].split("-")[0])
-        two_start = int(pair.split(",")[1].split("-")[0])
-        one_end = int(pair.split(",")[0].split("-")[1])
-        two_end = int(pair.split(",")[1].split("-")[1])
+        one_start, one_end, two_start, two_end = [int(x) for x in pair.replace(',', '-').split('-')]
 
         if one_start >= two_start and one_end <= two_end:
             count += 1
@@ -19,10 +16,7 @@ def part1():
 def part2():
     count = 0
     for pair in pairs:
-        one_start = int(pair.split(",")[0].split("-")[0])
-        two_start = int(pair.split(",")[1].split("-")[0])
-        one_end = int(pair.split(",")[0].split("-")[1])
-        two_end = int(pair.split(",")[1].split("-")[1])
+        one_start, one_end, two_start, two_end = [int(x) for x in pair.replace(',', '-').split('-')]
 
         if one_start <= two_end and two_start <= one_end:
             count += 1
