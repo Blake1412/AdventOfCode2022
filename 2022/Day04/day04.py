@@ -1,26 +1,12 @@
-pairs = open("data.txt").read().split("\n")
+pairs = [[int(num) for num in item.replace(",", "-").split("-")] for item in open("data.txt").read().split("\n")]
 
 
 def part1():
-    count = 0
-    for pair in pairs:
-        one_start, one_end, two_start, two_end = [int(x) for x in pair.replace(',', '-').split('-')]
-
-        if one_start >= two_start and one_end <= two_end:
-            count += 1
-        elif two_start >= one_start and two_end <= one_end:
-            count += 1
-    return count
+    return len([pair for pair in pairs if pair[0] >= pair[2] and pair[1] <= pair[3] or pair[2] >= pair[0] and pair[3] <= pair[1]])
 
 
 def part2():
-    count = 0
-    for pair in pairs:
-        one_start, one_end, two_start, two_end = [int(x) for x in pair.replace(',', '-').split('-')]
-
-        if one_start <= two_end and two_start <= one_end:
-            count += 1
-    return count
+    return len([pair for pair in pairs if pair[0] <= pair[3] and pair[2] <= pair[1]])
 
 
 print(part1())
